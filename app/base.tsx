@@ -9,6 +9,7 @@ import {RadioGroup, RadioGroupItem} from "@/components/ui/radio-group"
 import {Input} from "@/components/ui/input"
 import { PaperPlaneIcon, Component1Icon, GearIcon } from "@radix-ui/react-icons";
 import ChatUi from "@/app/chat";
+import {Select, SelectTrigger, SelectValue, SelectContent, SelectGroup, SelectItem} from "@/components/ui/select";
 
 export default function BaseUi() {
 	const [theme, setTheme] = useState("system")
@@ -82,20 +83,21 @@ export default function BaseUi() {
 								</div>
 							</RadioGroup>
 						</div>
-						<div className="grid gap-2">
-							<Label htmlFor="model-id">Model ID</Label>
-							<Input
-								id="account-id"
-								value={modelId}
-								onChange={(e) => setModelId(e.target.value)}
-								placeholder="Model ID"
-							/>
+						<div className={"grid gap-2"}>
+							<Label htmlFor="model">Model</Label>
+							<Select value={modelId} onValueChange={(v) => setModelId(v)}>
+								<SelectTrigger>
+									<SelectValue placeholder="Select an llm model" />
+								</SelectTrigger>
+								<SelectContent>
+									<SelectGroup>
+									<SelectItem key={`llm-model-gemma2-9b`} value={"gemma2:9b"}>Gemma2 9b</SelectItem>
+										<SelectItem key={`llm-model-gemma-2b`} value={"gemma:2b"}>Gemma 2b</SelectItem>
+										<SelectItem key={`llm-model-qwen2-500m`} value={"qwen2:0.5b"}>Qwen2 0.5b</SelectItem>
+									</SelectGroup>
+								</SelectContent>
+							</Select>
 						</div>
-						<DialogFooter>
-							<div>
-								<Button variant="outline">Close</Button>
-							</div>
-						</DialogFooter>
 					</DialogContent>
 				</Dialog>
 			</header>

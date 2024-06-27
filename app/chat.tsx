@@ -76,10 +76,8 @@ export default function ChatUi() {
       while (!done) {
         const { value, done: readerDone } = await reader.read();
         done = readerDone;
-		console.log(value)
         if (value) {
 		  const chars = decoder.decode(value)
-		  console.log(chars)
           botMessage += chars;
           setHistory(prevHistory => {
             const newHistory = [...prevHistory];

@@ -7,10 +7,17 @@ import { defineFlow, runFlow } from '@genkit-ai/flow';
 import * as z from 'zod';
 import { ollama } from 'genkitx-ollama';
 
+
 configureGenkit({
   plugins: [
     ollama({
-      models: [{ name: 'gemma:2b' }],
+      models: [{ name: 'qwen2:0.5b' }],
+      serverAddress: 'http://localhost:11434',
+    }),
+    ollama({
+      models: [
+          { name: 'gemma:2b' }
+      ],
       serverAddress: 'http://localhost:11434',
     }),
   ],
